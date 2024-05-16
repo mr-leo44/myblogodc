@@ -47,8 +47,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        dd($category->categories);
         $articles = Article::all();
-        return view('categories.show', compact('categorie', 'articles'));
+        return view('categories.show', compact('category', 'articles'));
     }
 
     /**
