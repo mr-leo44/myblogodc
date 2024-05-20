@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Liste des Catégorie
+    Liste des Articles
 @endsection
 @section('content')
     @if (session('success'))
@@ -16,83 +16,63 @@
 			</span>
         </div>
     @endif
-    <div class="max-h-auto mx-auto max-w-8xl">
+    <div class="max-h-auto mx-auto container">
         <div class="relative sm:flex sm:justify-center sm:items-center selection:text-white">
             <div class="max-w-7xl mx-auto p-6 lg:p-8">
                 <div class="flex justify-center font-semibold text-4xl">
-                    <h1>Liste des Catégories</h1>
+                    <h1>Liste des Articles</h1>
                 </div>
             </div>
         </div>
 
         <div class="overflow-x-auto">
             <div class="flex justify-end my-6">
-                <a href="{{ route('categories.create') }}" class="bg-blue-700 px-6 py-1 text-white rounded">Nouveau</a>
+                <a href="{{ route('articles.create') }}" class="bg-blue-700 px-6 py-1 text-white rounded">Nouveau</a>
             </div>
-            <table>
+            <table class="w-full">
                 <thead class="bg-white border-b">
                     <tr>
                         <th scope="col" class="text-sm font-medium bg-indigo-100 text-indigo-900 px-6 py-4 text-left">N°
                         </th>
                         <th scope="col" class="text-sm font-medium bg-indigo-100 text-indigo-900 px-6 py-4 text-left">
-                            Date
+                            Titre
                         </th>
-                        <th scope="col" class="text-sm font-medium bg-indigo-100 text-indigo-900 px-6 py-4 text-left">Nom
+                        <th scope="col" class="text-sm font-medium bg-indigo-100 text-indigo-900 px-6 py-4 text-left">Contenu
                         </th>
                         <th scope="col" class="text-sm font-medium bg-indigo-100 text-indigo-900 px-6 py-4 text-left">
-                            Description</th>
+                            Catégorie</th>
                         <th scope="col" class="text-sm font-medium bg-indigo-100 text-indigo-900 px-6 py-4 text-left">
                             Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $key => $categorie)
+                    @foreach ($articles as $key => $article)
                         <tr class="bg-gray-100 border-b">
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-900">{{ $key + 1 }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-900">
-                                {{ $categorie->created_at->format('d-m-Y') }}</td>
+                                {{ $article->title }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-900">
-                                {{ $categorie->name }}</td>
+                                {{ Str::limit($article->content, 20) }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-900">
-                                {{ $categorie->description }}</td>
+                                {{ $article->category->name }}</td>
                             <td
                                 class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-900 first:mr-2 last:ml-2">
-                                <a href="{{ route('categories.show', $categorie->id) }}"
+                                <a href="{{ route('articles.show', $article->id) }}"
                                     class="bg-blue-700 px-6 py-1 text-white rounded">Voir</a>
-                                <a href="{{ route('categories.edit', $categorie->id) }}"
+                                <a href="{{ route('articles.edit', $article->id) }}"
                                     class="bg-emerald-700 px-6 py-1 text-white rounded">Editer</a>
-                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="{{ route('categories.destroy', $categorie->id) }}"
-                                        class="bg-red-700 px-6 py-1 text-white rounded">Supprimer</a>
+                                <form action="{{ route('articles.destroy', $article->id) }}" method="POST" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="bg-red-700 px-6 py-1 text-white rounded">Supprimer</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            <div>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer catégorie</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                Voulez-vous vraiment supprimer cette catégorie?
-                            </div>
-                            <div class="modal-footer">
-                                <form action="" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                    <button type="submit" class="btn btn-danger" onclick="destroy(event)">Confirmer</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div>
     </div>
 @endsection
 @section('scripts')
