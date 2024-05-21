@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('title')
-    Enregistrer une catégorie
+    Enregistrer un article
 @endsection
 @section('content')
 
-   
+
 @endsection

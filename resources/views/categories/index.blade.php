@@ -27,7 +27,7 @@
         </div>
 
         <div class="flex justify-end my-4">
-            <a href="{{ route('categories.create') }}" class="bg-blue-700 px-6 py-1 text-white rounded">Nouveau</a>
+            <a href="{{ route('categories.create') }}" class="bg-indigo-700 px-6 py-1 text-white rounded">Nouveau</a>
         </div>
         <div class="overflow-x-auto">
             <table class="w-full">
