@@ -9,7 +9,8 @@
             <p>{{ $category->description }}</p>
         </div>
         <div>
-            <a href="{{ route('categories.edit', $category->id) }}" class="bg-blue-700 px-6 py-1 my-5 text-white rounded">Editer</a>
+            <a href="{{ route('categories.edit', $category->id) }}" class="bg-blue-700 px-6 py-2 text-white rounded">Editer la catégorie</a>
+            <a href="{{ route('articles.create', $category->id) }}" class="bg-indigo-700 px-6 py-2 text-white rounded">Ajouter article</a>
         </div>
     </div>
     <div class="my-6 overflow-x-auto">

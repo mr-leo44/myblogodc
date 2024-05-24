@@ -19,7 +19,8 @@ class ArticleFactory extends Factory
         return [
             'title' => fake('fr')->company(),
             'content' => fake('fr')->paragraph(4, true),
-            'category_id' => fake()->randomDigit(),
+            'category_id' => fake()->numberBetween(1, 10),
+            'user_id' => 1,
         ];
     }
 }

@@ -41,8 +41,8 @@
                         </th>
                         <th scope="col" class="text-sm font-medium bg-indigo-100 text-indigo-900 px-6 py-4 text-left">
                             Catégorie</th>
-                        <th scope="col" class="text-sm font-medium bg-indigo-100 text-indigo-900 px-6 py-4 text-left">
-                            Auteur</th>
+                        {{-- <th scope="col" class="text-sm font-medium bg-indigo-100 text-indigo-900 px-6 py-4 text-left">
+                            Auteur</th> --}}
                         <th scope="col" class="text-sm font-medium bg-indigo-100 text-indigo-900 px-6 py-4 text-left">
                             Action</th>
                     </tr>
@@ -58,8 +58,8 @@
                                 {{ Str::limit($article->content, 20) }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-900">
                                 {{ $article->category->name }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-900">
-                                {{ $article->user->name }}</td>
+                            {{-- <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-900">
+                                {{ $article->user->name }}</td> --}}
                             <td
                                 class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-900 first:mr-2 last:ml-2">
                                 <a href="{{ route('articles.show', $article->id) }}"
